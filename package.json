@@ -6,9 +6,6 @@
   "browser": {
     "node-webcrypto-ossl": false
   },
-  "config": {
-    "browsers": "Firefox"
-  },
   "scripts": {
     ":clean:coverage": "rimraf coverage/",
     "clean": "npm run :clean:coverage",
@@ -16,7 +13,7 @@
     ":lint:lib": "eslint lib/**/*.js",
     "lint": "npm-run-all :lint:*",
     "pretest": "npm run lint && npm run :clean:coverage",
-    "test": "nyc mocha test/**/*-test.js && karma start --browsers=$npm_package_config_browsers"
+    "test": "nyc mocha test/**/*-test.js && karma start ${npm_config_karma_args}"
   },
   "repository": {
     "type": "git",

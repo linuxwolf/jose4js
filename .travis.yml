@@ -1,0 +1,14 @@
+
+language: node_js
+node_js: stable
+
+addons:
+  firefox: latest-beta
+  chrome: stable
+
+env:
+  - npm_config_karma_args=--browsers=Firefox,Chrome
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
