@@ -6,9 +6,6 @@
   "browser": {
     "node-webcrypto-ossl": false
   },
-  "config": {
-    "browsers": "Firefox"
-  },
   "scripts": {
     ":clean:coverage": "rimraf coverage/",
     "clean": "npm run :clean:coverage",
@@ -16,7 +13,7 @@
     ":lint:lib": "eslint lib/**/*.js",
     "lint": "npm-run-all :lint:*",
     ":test:node": "nyc mocha test/**/*-test.js",
-    ":test:browser": "karma start --browsers=${npm_package_config_browsers}",
+    ":test:browser": "karma start ${npm_config_karma_opts}",
     "pretest": "npm run lint && npm run :clean:coverage",
     "test": "npm run :test:node && npm run :test:browser"
   },
@@ -42,7 +39,6 @@
     "eslint": "^4.2.0",
     "istanbul-instrumenter-loader": "^2.0.0",
     "karma": "^1.7.0",
-    "karma-chrome-launcher": "^2.2.0",
     "karma-coverage-istanbul-reporter": "^1.3.0",
     "karma-firefox-launcher": "^1.0.1",
     "karma-mocha": "^1.3.0",

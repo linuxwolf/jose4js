@@ -62,9 +62,16 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
 
+    customLaunchers: {
+      "FirefoxHeadless": {
+        base: "Firefox",
+        flags: ["-headless"]
+      }
+    },
+
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ["Firefox"],
+    browsers: ["FirefoxHeadless"],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

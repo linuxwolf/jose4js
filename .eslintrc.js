@@ -19,6 +19,9 @@ module.exports = {
                 "var": 2,
                 "let": 2,
                 "const": 3
+              },
+              "CallExpression": {
+                "arguments": "first"
               }
             }
         ],
