@@ -12,7 +12,7 @@ const JWE = {
 };
 
 describe("JWE", () => {
-  it("round trips an encrypt/decrypt", async () => {
+  it("roundtrip dir/A128GCM", async () => {
     let opts, cipher;
     cipher = JWA.cipher("A128GCM");
     opts = await cipher.generateKey();
@@ -27,5 +27,24 @@ describe("JWE", () => {
     assert.ok(result);
     assert.ok(result.plaintext);
     assert.strictEqual(UTF8.decode(result.plaintext), plaintext);
+  });
+  it("roundtrip A128KW/A128GCM", async () => {
+    let opts, wrappingCipher, cipher;
+    wrappingCipher = JWA.cipher("A128KW");
+    cipher = JWA.cipher("A128GCM");
+    opts = await wrappingCipher.generateKey();
+    opts = await cipher.generateKey(opts);
+
+    let plaintext = "hello there";
+    let result = await JWE.encrypt(opts, plaintext);
+    /* eslint no-console: "off" */
+    console.log(`keywrap encryption result: ${JSON.stringify(result)}`);
+    assert.ok(result);
+    let encrypted = result;
+    result = await JWE.decrypt(opts, encrypted);
+    assert.ok(result);
+    assert.ok(result.plaintext);
+    assert.strictEqual(UTF8.decode(result.plaintext), plaintext);
+
   });
 });

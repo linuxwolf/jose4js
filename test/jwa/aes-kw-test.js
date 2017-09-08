@@ -7,10 +7,9 @@ const assert = require("chai").assert;
 const AESKW = require("../../lib/jwa/aes-kw");
 const AESGCM = require("../../lib/jwa/aes-gcm"),
       BASE64 = require("../../lib/util/base64"),
-      BUFFERS = require("../../lib/util/buffers"),
       webcrypto = require("../../lib/util/webcrypto");
 
-describe.only("jwa/aes-kw", () => {
+describe("jwa/aes-kw", () => {
   let testdata = {
     "A128KW": {
       alg: "A128KW",
@@ -69,7 +68,20 @@ describe.only("jwa/aes-kw", () => {
         let cipher = AESKW.ciphers[alg];
 
         it("has expected methods", () => {
-          ["configure", "generateKey", "wrapKey"].forEach(m => assert.typeOf(cipher[m], "function"));
+          ["configure", "generateKey", "wrapKey", "unwrapKey"].forEach(m => assert.typeOf(cipher[m], "function"));
+        });
+        it("configures options for 'generateKey'", () => {
+          let opts;
+          opts = cipher.configure("generateKey");
+          assert.typeOf(opts, "object");
+          assert.deepEqual(opts.wrappingAlgorithm, {
+            name: "AES-KW",
+            length: details.length
+          });
+          assert.deepEqual(opts.header, {
+            alg: alg
+          });
+          assert.strictEqual(opts.wrappingFormat, "raw");
         });
         it("configures options for 'wrapKey'", () => {
           let opts;
@@ -122,6 +134,12 @@ describe.only("jwa/aes-kw", () => {
             alg: alg
           });
           assert.strictEqual(opts.wrappingFormat, "raw");
+        });
+
+        it("generates a key", async () => {
+          let opts;
+          opts = await cipher.generateKey();
+          assert(opts.wrappingKey);
         });
 
         for (let tc of details.cases) {
