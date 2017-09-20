@@ -11,7 +11,7 @@ const JWE = {
   decrypt: require("../../lib/jwe/decrypt").decrypt
 };
 
-describe("JWE", () => {
+describe("encrypt-decrypt", () => {
   it("roundtrip dir/A128GCM", async () => {
     let opts, cipher;
     cipher = JWA.cipher("A128GCM");

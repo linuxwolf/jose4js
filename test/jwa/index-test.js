@@ -6,7 +6,7 @@ const assert = require("chai").assert;
 
 const JWA = require("../../lib/jwa");
 
-describe("JWA", () => {
+describe("index", () => {
   const testAlgs = {
     "dir": ["deriveKey"],
     "A128GCM": ["generateKey", "encrypt", "decrypt"],

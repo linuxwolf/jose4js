@@ -7,7 +7,7 @@ const assert = require("chai").assert;
 const webcrypto = require("../../lib/util/webcrypto");
 const DIR = require("../../lib/jwa/dir");
 
-describe("jwa/dir", () => {
+describe("'dir'", () => {
   describe("ciphers", () => {
     describe("dir", () => {
       let cipher = DIR.ciphers["dir"];

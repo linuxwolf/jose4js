@@ -9,7 +9,7 @@ const AESGCM = require("../../lib/jwa/aes-gcm"),
       BASE64 = require("../../lib/util/base64"),
       webcrypto = require("../../lib/util/webcrypto");
 
-describe("jwa/aes-kw", () => {
+describe("'AES-KW'", () => {
   let testdata = {
     "A128KW": {
       alg: "A128KW",

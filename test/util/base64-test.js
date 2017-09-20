@@ -75,7 +75,7 @@ const testdata = [
   }
 ];
 
-describe("util/base64", () => {
+describe("base64", () => {
   for (let tc of testdata) {
     let { description, data, b64, b64u } = tc;
     it (`encodes BufferSource => base64: ${description}`, () => {

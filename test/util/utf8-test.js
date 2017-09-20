@@ -24,7 +24,7 @@ const testdata = [
   }
 ];
 
-describe("util/utf8", () => {
+describe("utf8", () => {
   for (let tc of testdata) {
     let { description, text, data} = tc;
     it(`encodes string => utf8 array: ${description}`, () => {

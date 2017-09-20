@@ -9,10 +9,10 @@
   "scripts": {
     ":clean:coverage": "rimraf coverage/",
     "clean": "npm run :clean:coverage",
-    ":lint:test": "eslint test/**/*.js",
-    ":lint:lib": "eslint lib/**/*.js",
+    ":lint:test": "eslint test",
+    ":lint:lib": "eslint lib",
     "lint": "npm-run-all :lint:*",
-    ":test:node": "nyc mocha test/**/*-test.js",
+    ":test:node": "nyc mocha test",
     ":test:browser": "karma start ${npm_config_karma_opts}",
     "pretest": "npm run lint && npm run :clean:coverage",
     "test": "npm run :test:node && npm run :test:browser"
@@ -47,7 +47,7 @@
     "karma-webpack": "^2.0.4",
     "mocha": "^3.4.2",
     "npm-run-all": "^4.0.2",
-    "nyc": "^11.0.3",
+    "nyc": "^11.2.1",
     "webpack": "^3.4.0"
   },
   "dependencies": {

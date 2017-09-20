@@ -6,7 +6,7 @@ const assert = require("chai").assert;
 
 const BUFFERSs = require("../../lib/util/buffers");
 
-describe("util/buffers", () => {
+describe("buffers", () => {
   const as_is = {
     "Uint8Array": new Uint8Array([0xa5]),
     "Uint8ClampedArray": new Uint8ClampedArray([0x5a])
